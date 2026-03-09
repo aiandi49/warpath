@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WARPATH – Luke Arrow Ferguson</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Raleway:wght@300;400;600;700&display=swap');
+
+  :root {
+    /* Lakota Sioux palette */
+    --lakota-red:    #8B1A1A;
+    --lakota-earth:  #6B4226;
+    --lakota-gold:   #C89B3C;
+    --lakota-sky:    #2C5F8A;
+    --lakota-sage:   #5C7A4E;
+    /* Scandinavian/Norse palette */
+    --norse-midnight:#1A2744;
+    --norse-steel:   #4A7BA7;
+    --norse-silver:  #B8C9D9;
+    --norse-ice:     #E8F4F8;
+    --norse-rune:    #2D3561;
+    /* Blended accent */
+    --blend-amber:   #D4943A;
+    --blend-twilight:#3D2B6B;
+    --blend-dawn:    #C4773B;
+    --text-light:    #F5EFE6;
+    --text-dark:     #1C1008;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Merriweather', Georgia, serif;
+    background: var(--norse-midnight);
+    color: var(--text-light);
+    line-height: 1.85;
+  }
+
+  /* ── COVER ───────────────────────────────────────── */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(160deg,
+      var(--norse-midnight) 0%,
+      var(--blend-twilight) 30%,
+      var(--lakota-earth)   60%,
+      var(--lakota-red)     85%,
+      #0a0a0a               100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 20% 80%, rgba(139,26,26,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(44,95,138,0.35) 0%, transparent 60%);
+  }
+
+  /* Decorative rune border lines */
+  .cover::after {
+    content: '᛭ ᚹᚪᚱᛈᚪᚦ ᛭  ᛭ WARPATH ᛭';
+    position: absolute;
+    top: 20px; left: 0; right: 0;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.5em;
+    color: rgba(200,155,60,0.5);
+  }
+
+  .cover-inner { position: relative; z-index: 1; }
+
+  .cover-tag {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--lakota-gold);
+    margin-bottom: 24px;
+  }
+
+  .cover h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--lakota-gold) 0%, #fff5e0 40%, var(--norse-steel) 80%, var(--lakota-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 0 30px rgba(200,155,60,0.4));
+  }
+
+  .cover-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-weight: 300;
+    letter-spacing: 0.25em;
+    color: var(--norse-silver);
+    margin-bottom: 40px;
+  }
+
+  .author-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.4rem, 4vw, 2.4rem);
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+
+  .author-sub {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.3em;
+    color: var(--lakota-gold);
+    opacity: 0.8;
+    margin-bottom: 60px;
+  }
+
+  .heritage-badges {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .badge {
+    padding: 10px 28px;
+    border-radius: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .badge-lakota {
+    background: linear-gradient(135deg, var(--lakota-red), var(--lakota-earth));
+    border: 1px solid var(--lakota-gold);
+    color: var(--text-light);
+  }
+
+  .badge-norse {
+    background: linear-gradient(135deg, var(--norse-midnight), var(--norse-rune));
+    border: 1px solid var(--norse-steel);
+    color: var(--norse-silver);
+  }
+
+  .cover-tagline {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--blend-amber);
+    line-height: 1.5;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Decorative divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 40px auto;
+    max-width: 600px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--lakota-gold), transparent);
+  }
+
+  .divider-symbol {
+    font-size: 1.5rem;
+    color: var(--lakota-gold);
+  }
+
+  /* ── MISSION BANNER ──────────────────────────────── */
+  .mission-banner {
+    background: linear-gradient(135deg, var(--lakota-red) 0%, var(--blend-twilight) 50%, var(--norse-midnight) 100%);
+    padding: 80px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mission-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c89b3c' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .mission-banner h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--lakota-gold);
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .mission-text {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 2;
+    color: var(--text-light);
+    position: relative;
+    font-style: italic;
+  }
+
+  .big-quote {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    color: var(--blend-amber);
+    line-height: 1.3;
+    margin: 50px auto;
+    max-width: 900px;
+    text-align: center;
+  }
+
+  /* ── BODY CONTENT ────────────────────────────────── */
+  .content-section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .chapter-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .chapter-label {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--lakota-gold);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .chapter-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--text-light);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .chapter-rule {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--lakota-red), var(--lakota-gold), var(--norse-steel));
+    margin: 20px auto 0;
+    border-radius: 2px;
+  }
+
+  .story-text {
+    font-size: 1.05rem;
+    color: #ddd5c8;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .story-text p {
+    margin-bottom: 1.6em;
+  }
+
+  .story-text .dropcap::first-letter {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 4.5em;
+    float: left;
+    line-height: 0.75;
+    margin-right: 10px;
+    margin-top: 8px;
+    color: var(--lakota-gold);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  }
+
+  .pull-quote {
+    border-left: 4px solid var(--lakota-gold);
+    border-right: 4px solid var(--norse-steel);
+    padding: 24px 32px;
+    margin: 50px 0;
+    background: rgba(255,255,255,0.04);
+    border-radius: 4px;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--norse-silver);
+    text-align: center;
+    line-height: 1.8;
+  }
+
+  /* ── HERITAGE SECTION ────────────────────────────── */
+  .heritage-section {
+    background: linear-gradient(180deg, #0a0a12 0%, var(--norse-rune) 50%, #0a0a12 100%);
+    padding: 80px 40px;
+  }
+
+  .heritage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 620px) {
+    .heritage-grid { grid-template-columns: 1fr; }
+  }
+
+  .heritage-card {
+    padding: 40px 32px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .heritage-card-lakota {
+    background: linear-gradient(160deg, rgba(139,26,26,0.5), rgba(107,66,38,0.3));
+    border: 1px solid rgba(200,155,60,0.4);
+  }
+
+  .heritage-card-norse {
+    background: linear-gradient(160deg, rgba(26,39,68,0.7), rgba(74,123,167,0.2));
+    border: 1px solid rgba(74,123,167,0.5);
+  }
+
+  .heritage-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .heritage-card h3 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+    color: var(--lakota-gold);
+  }
+
+  .heritage-card p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.95rem;
+    color: var(--norse-silver);
+    line-height: 1.7;
+  }
+
+  /* ── REFLECTIONS SECTION ─────────────────────────── */
+  .reflections-section {
+    background: linear-gradient(135deg, #0d0806 0%, var(--lakota-earth) 40%, #0d0806 100%);
+    padding: 80px 40px;
+  }
+
+  .reflection-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 36px;
+    margin-bottom: 30px;
+    border-top: 3px solid var(--lakota-gold);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+  }
+
+  .reflection-card h4 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--blend-amber);
+    margin-bottom: 14px;
+  }
+
+  .reflection-card p {
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.97rem;
+    color: #ccc5bc;
+    line-height: 1.8;
+  }
+
+  /* ── COALITION SECTION ───────────────────────────── */
+  .coalition-section {
+    background: linear-gradient(160deg, var(--norse-midnight) 0%, var(--blend-twilight) 50%, var(--lakota-red) 100%);
+    padding: 100px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .coalition-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(200,155,60,0.1) 0%, transparent 70%);
+  }
+
+  .coalition-section h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: var(--lakota-gold);
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .coalition-text {
+    max-width: 750px;
+    margin: 0 auto 50px;
+    font-size: 1.1rem;
+    line-height: 2;
+    color: var(--text-light);
+    position: relative;
+  }
+
+  .coalition-poem {
+    max-width: 700px;
+    margin: 0 auto;
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    line-height: 2.2;
+    color: var(--blend-amber);
+    position: relative;
+  }
+
+  .coalition-poem .line {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  /* ── CLOSING ─────────────────────────────────────── */
+  .closing-section {
+    background: linear-gradient(180deg, #050505 0%, var(--norse-midnight) 50%, #050505 100%);
+    padding: 100px 40px;
+    text-align: center;
+  }
+
+  .closing-section h2 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--text-light);
+    margin-bottom: 30px;
+  }
+
+  .closing-section p {
+    max-width: 700px;
+    margin: 0 auto 24px;
+    font-size: 1.05rem;
+    color: #ccc5bc;
+    line-height: 2;
+  }
+
+  .closing-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    background: linear-gradient(135deg, var(--lakota-gold), var(--norse-steel), var(--lakota-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 30px 0 10px;
+  }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: #020202;
+    padding: 40px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.25);
+    letter-spacing: 0.2em;
+  }
+
+  /* Ornamental rune strip between sections */
+  .rune-strip {
+    background: linear-gradient(90deg, var(--lakota-red), var(--blend-twilight), var(--norse-midnight));
+    padding: 16px 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(200,155,60,0.6);
+    letter-spacing: 1.5em;
+  }
+
+  .section-bg-1 {
+    background: linear-gradient(180deg, #0a0a12 0%, #080510 100%);
+  }
+
+  .section-bg-2 {
+    background: linear-gradient(180deg, #100808 0%, #0a0a12 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ COVER ═══ -->
+<section class="cover">
+  <div class="cover-inner">
+    <p class="cover-tag">A True Story of Survival, Identity &amp; Redemption</p>
+
+    <h1>WARPATH</h1>
+
+    <p class="cover-subtitle">Born in War · Baptized in Blood · Redeemed by Purpose</p>
+
+    <div class="heritage-badges">
+      <span class="badge badge-lakota">🦅 Lakota Sioux Warrior</span>
+      <span class="badge badge-norse">⚡ Scandinavian Viking</span>
+    </div>
+
+    <p class="author-name">Luke Arrow Ferguson</p>
+    <p class="author-sub">Moving Forward with Love</p>
+
+    <div class="divider">
+      <span class="divider-line"></span>
+      <span class="divider-symbol">✦</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <p class="cover-tagline">
+      "Everybody — regardless of color, regardless of the past —<br>
+      he is here. Moving forward with love is his game."
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ MISSION BANNER ═══ -->
+<section class="mission-banner">
+  <h2>A Message to You, the Reader</h2>
+  <p class="mission-text">
+    This book exists for one reason — so that you know you are <em>not alone</em>. Whatever you are going through,
+    whatever darkness has tried to define you, there is a path forward. Luke Ferguson walked through the fire
+    so he could light the way. His story is raw, unfiltered, and real — told in his own words,
+    by a man who emerged from places most never return from, not just alive, but <strong>transformed</strong>.
+  </p>
+
+  <div class="divider" style="margin: 50px auto;">
+    <span class="divider-line"></span>
+    <span class="divider-symbol">᛭</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <p class="big-quote">
+    "If I can make a difference in helping someone better themselves<br>
+    and learn from my mistakes — then what I went through was worth it.<br>
+    That was God's Design."
+  </p>
+  <p style="text-align:center; font-family:'Raleway',sans-serif; color:var(--lakota-gold); letter-spacing:0.2em; font-size:0.9rem;">— Luke Arrow Ferguson</p>
+</section>
+
+<div class="rune-strip">᛭ ᚹᚪᚱ ᛭ ᛈᚪᚦ ᛭ ᚹᚪᚱ ᛭ ᛈᚪᚦ ᛭</div>
+
+<!-- ═══════════════════════════════ CHAPTER 1 ═══ -->
+<section class="section-bg-1">
+  <div class="content-section">
+    <div class="chapter-header">
+      <span class="chapter-label">Chapter One</span>
+      <h2 class="chapter-title">The Beginning</h2>
+      <div class="chapter-rule"></div>
+    </div>
+
+    <div class="story-text">
+      <p class="dropcap">
+        I often wonder how my life would have turned out had I not lost my innocence in a world that was insane. My name is Luke Arrow Ferguson — and this is my story, to the best of my knowledge and memory, and as told by some of my family.
+      </p>
+
+      <p>
+        Where to begin — it's hard to think as my mind races with thoughts of my past. Searching deep in my psyche and the wall that's been built of memories long ago. Memories that should never come out, and events that are too hard to fathom, much less contemplate.
+      </p>
+
+      <p>
+        I guess you could say that I was born in war and baptized in blood. In either case, it made me the man I am today. But with that said, it set the stage for who I would become in later years — the man who earned the name <em>Warpath</em> by his brothers in one of the most dangerous prison gangs in the system.
+      </p>
+
+      <div class="pull-quote">
+        "It is my hope and passion that whoever is reading this — it helps you in some sense of the word, knowing that you are not alone. And whatever you're going through in life, you can make a difference in someone else's."
+      </div>
+
+      <p>
+        After all, if I can make a difference in helping someone better themselves and learn from my mistakes, then what I went through in life was worth it — it was God's Design. Kind of like Saul in the Bible who became Paul.
+      </p>
+
+      <p>
+        From what I can remember in my early, early years — I think I was about maybe three or four — through those eyes, the eyes of a loving grandmother who loved me. But what I saw was blank, cold, and nothing there. I could not understand, much less contemplate, what was going on. But grandma was dead.
+      </p>
+
+      <p>
+        It's still disputed to this day that grandfather killed her in a fit of rage and drunkenness. But I don't remember — I was too young, or my mind shut down. I don't really know for sure. All I remember of my early years are really bits and pieces. For some reason, my mind started to build a wall — a way to protect me — is the only way I can describe it.
+      </p>
+
+      <p>
+        Keep in mind: most of what I'm describing comes from relatives and bits and pieces of memories.
+      </p>
+
+      <p>
+        How I came to live with my grandparents is also disputed. My mother had me at age 16. Some say grandpa took me from the hospital, but I don't quite know. I was raised with my uncles and aunts — as one once put it — as the little brother, since my mom was the second child to be born out of eight children: four boys and four girls.
+      </p>
+
+      <p>
+        I don't know much about my grandmother's side. But what I do know is this — she was <strong>Lakota Sioux Indian</strong>, and I come from a long line of warriors. So I am Sioux Indian and Scandinavian descent — which would make me a Viking Indian, I guess you could say.
+      </p>
+
+      <p>
+        Which is kind of funny in a way. I never knew the white side of that genealogy until the year 2017 — or much less who my father was until then — which I was 46 years old and in prison at the time.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ HERITAGE SECTION ═══ -->
+<section class="heritage-section">
+  <div class="chapter-header" style="text-align:center; padding-bottom:40px;">
+    <span class="chapter-label" style="display:block; text-align:center;">His Blood, His Bones</span>
+    <h2 class="chapter-title" style="text-align:center;">Two Warrior Bloodlines, One Unbreakable Man</h2>
+    <div class="chapter-rule"></div>
+  </div>
+
+  <div class="heritage-grid">
+    <div class="heritage-card heritage-card-lakota">
+      <span class="heritage-icon">🦅</span>
+      <h3>Lakota Sioux</h3>
+      <p>
+        The Lakota are among the most renowned warrior peoples of the Great Plains — fierce, spiritual, and deeply connected to the land. Their tradition of bravery, endurance, and communal loyalty runs through Luke's veins. From his grandmother's bloodline, he inherits the spirit of warriors who never surrendered.
+      </p>
+    </div>
+    <div class="heritage-card heritage-card-norse">
+      <span class="heritage-icon">⚡</span>
+      <h3>Scandinavian Viking</h3>
+      <p>
+        The Norse Vikings were legendary seafarers, explorers, and fighters — known for their resilience against impossible odds, their code of honor, and their belief in destiny. Luke's Scandinavian heritage gives him the blood of men who carved their names into history through sheer force of will.
+      </p>
+    </div>
+  </div>
+
+  <div style="max-width:700px; margin:50px auto 0; text-align:center;">
+    <p style="font-family:'Merriweather',serif; font-size:1.05rem; color:var(--norse-silver); line-height:2; font-style:italic;">
+      Two of the world's greatest warrior traditions — the Plains warrior and the Norse berserker — merged in a single human being.
+      It is no accident that Luke Arrow Ferguson became who he is. His blood demanded it.
+    </p>
+  </div>
+</section>
+
+<div class="rune-strip">✦ ᛚᚢᚲᛖ ✦ ᚠᛖᚱᚷᚢᛋᚩᚾ ✦ ᚹᚪᚱᛈᚪᚦ ✦</div>
+
+<!-- ═══════════════════════════ CHAPTER CONTINUES ═══ -->
+<section class="section-bg-2">
+  <div class="content-section">
+    <div class="chapter-header">
+      <span class="chapter-label">The Story Continues</span>
+      <h2 class="chapter-title">Surviving the Storm</h2>
+      <div class="chapter-rule"></div>
+    </div>
+
+    <div class="story-text">
+      <p>
+        The year was 1973, and frost was still in the air. I remember waking up and hearing gunfire. But at the time I could not quite vaguely understand what was going on, as people were running and screaming everywhere. I often to this day hear those screams — but before I can get a picture of that thought, the memory's gone, like a fart in the wind, and fades from memory, and the screams fade with it.
+      </p>
+
+      <p>
+        Growing up for me was not ideal, to say the least. My life from 1973, after grandmother's death, was extremely painful — and set the stage for the beginning of my life and who I would become in later years. Because to this day I can often still hear grandfather's voice at times, echoing from times past when my anger flares.
+      </p>
+
+      <p>
+        I think somewhere around the age of five or so — can't really remember — I started hearing the voices. But more like whispers, you could say. Until I started getting older. Grandfather — one might put it — I don't think quite understood. He just whipped me a lot. Grandpa, back in those days, was feared by a lot of people. He was a man that was respected and demanded respect, or you got your ass handed to you if not killed. He was a WWII vet that saw a lot of action and more or less killed a lot of people. In a sense, he was all messed up. Maybe that's why he was a drunk — but also meaner than a rattlesnake and just as fast.
+      </p>
+
+      <div class="pull-quote">
+        "I remember one time — it was my first day of school. I was followed by two kids on my way home. Somewhere between there they made their move, and the fight was on..."
+      </div>
+
+      <p>
+        I lost that fight. While I was lying on the ground, bloody, battered, and beaten, they walked away laughing. Ashamed of my loss, I managed to get up and limped home. I can tell you — that was one of the longest walks I ever did.
+      </p>
+
+      <p>
+        But what awaited was far worse than what I had gotten. You see, grandpa hated weakness — hated it with every fiber of his soul, and that's speaking it lightly. Upon my arrival, he'd already gotten word of my loss. He was waiting on the porch. When he saw me limping and battered, he calmly walked down and stood over me. I can tell you one thing — I didn't even see the punch coming as my head snapped back.
+      </p>
+
+      <p>
+        One sentence he said to me: <em>"Get your ass beat again and I'll beat you harder."</em> I don't know what I thought, but from there on I fought a lot that year — and never lost again.
+      </p>
+
+      <p>
+        Grandpa liked to travel a lot that year and the years that followed. He took me everywhere, and he did things to people that leave no room for imagination. One time I awoke in the car we had, and he was burning something out in the middle of nowhere. He said he hit a deer — but what he had wrapped up in some kind of blanket, I saw a foot as he was putting it in the hole.
+      </p>
+
+      <p>
+        It's so weird thinking about it now, kind of like yesterday, as that memory comes to mind. I keep telling people: stop poking holes in the dam of my memories. But I gave my word on writing this book, and as much as I feel uncomfortable — I am a man of my word.
+      </p>
+
+      <p>
+        The year I think was somewhere around 1975, give or take. I was always alone. I remember when I started hearing the whispers more clearly. At first I could not make them out, but as months went by they started to become clearer — and sometimes not. Try being in a large room while everyone's talking at the same time. That's the only way I can describe it — kind of like trying to pick out that single voice and grasp it. But then again, there are times that one, two, or sometimes three will be alone, talking to me. It took me years to figure this out. Still, I can never quite stop them — I just deal with them. But all in all, they're kind of like old friends, as I have gotten used to them over time.
+      </p>
+
+      <p>
+        I often think back to the yesterday years and try to reflect on the things that could have been different. Life's challenges are hard throughout time. You have to have an anchor that grounds you. But don't let the past define the person you can become — for we all are unique in our own ways that defy who you are. Because in a sense, fate is watching. And whatever you do will always echo through eternity. And God is watching.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CHAPTER: FAMILY ═══ -->
+<section class="section-bg-1">
+  <div class="content-section">
+    <div class="chapter-header">
+      <span class="chapter-label">Back with Family</span>
+      <h2 class="chapter-title">Coming Home</h2>
+      <div class="chapter-rule"></div>
+    </div>
+
+    <div class="story-text">
+      <p>
+        From 1975 on up is somewhat of a blur — just bits and pieces mainly. My mom was able to get me back from my grandfather somehow, which I was extremely happy about — but it was also short-lived.
+      </p>
+
+      <p>
+        You see, mom was also an alcoholic and drug addict as well. In all reality, because now I had a sister and little brother, I don't think mom quite understood the reality of a family. I mean, I knew I had a sister and brother already. But coming home was extremely different for me, and I quite didn't understand where I fit in.
+      </p>
+
+      <p>
+        I often think maybe she felt she had made a mistake. After all, I was a bit wild, to say the least — and that's speaking it mildly. I know I didn't fit well in school and I was always fighting, it seemed. I think she felt I was out of control. I know I saw a lot of doctors and mental health doctors in my first year back with her, and medication was prescribed to me to calm me down. All it did was make me lash out as I fought the meds they put me on.
+      </p>
+
+      <p>
+        Alternative placement followed — foster homes and detention facilities for out-of-control juveniles. Fighting, anger, rage, and blackouts — that's all I remember. Wild. I guess you could say I was wild — and treated as such.
+      </p>
+
+      <div class="pull-quote">
+        "From the last chapter all I remember was depression, loneliness, and a hell of a lot of anger and pain throughout the years — but I had one shining light."
+      </div>
+
+      <p>
+        My sister's dad — God rest his soul — taught me how to control my anger somewhat. He was once a Navy SEAL in SEAL Team 7. He was a man that didn't take anything from anyone, but never looked for trouble.
+      </p>
+
+      <p>
+        Then one night I awoke to go to the bathroom — Teddy bear in hand. Yes, I slept with a Teddy bear. Anyone got a problem with that? I heard loud crashing noises and people shouting. Half asleep, I opened the bathroom door and saw a man in the hallway, his back toward me. That's when I heard what sounded like an explosion — and what I can only describe as being sprayed — a wetness that covered me from my face, a warm sensation slowly dripping down all of my chin and over my Teddy bear.
+      </p>
+
+      <p>
+        My dad had shot a man in the head. The back of that man's head — brains, call it what you will — hit me in the face and all over my Teddy bear. I remember stillness, a quiet calm, as I was trying to grasp what had just happened. But I could not figure it out — as if I was in a bad dream and could not wake, but was awake in a reality I could not comprehend.
+      </p>
+
+      <p>
+        All I remember after that was him kneeling down in front of me with a look in his eyes of sorrow for what had just happened. Screaming — screaming in my head — I remember, but nothing coming out. Like I could not talk, nor breathe. Just dead silence. Frozen in time.
+      </p>
+
+      <p>
+        I don't think I spoke for maybe a year — maybe longer. And all I remember now is that taste. That taste in my mouth as I reflect on it now. Turns out the man was trying to get with my mom and was caught and tried to kill my dad — my stepfather — but dad blew half his head off, and I got caught in the middle.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ REFLECTIONS ═══ -->
+<section class="reflections-section">
+  <div style="max-width:860px; margin:0 auto;">
+    <div class="chapter-header" style="text-align:center; margin-bottom:50px;">
+      <span class="chapter-label" style="display:block; text-align:center;">Themes of the Journey</span>
+      <h2 class="chapter-title" style="text-align:center;">Reflections on Luke's Story</h2>
+      <div class="chapter-rule"></div>
+    </div>
+
+    <div class="reflection-card">
+      <h4>🩸 Trauma and Its Lasting Imprint</h4>
+      <p>
+        Luke vividly conveys the deep imprint of traumatic events on his life — his grandmother's death, his grandfather's harshness, the violence he witnessed and endured. The emotional walls his mind built were not weakness — they were survival. Understanding this is the first step toward compassion, for others and for ourselves.
+      </p>
+    </div>
+
+    <div class="reflection-card">
+      <h4>🦅 Identity and the Warrior Heritage</h4>
+      <p>
+        Being of mixed Lakota Sioux and Scandinavian descent reflects a broader struggle many people face in reconciling different aspects of their heritage. Luke's blood carries two warrior traditions — and his life has proven that lineage matters. He was built for the battles he had to face.
+      </p>
+    </div>
+
+    <div class="reflection-card">
+      <h4>🔥 The Cycle of Violence</h4>
+      <p>
+        The narrative illustrates how violence permeates familial relationships across generations. Luke's grandfather's rage, his own anger and fighting — these depict a painful legacy that was hard to escape. Yet Luke's greatest act of strength was deciding to break that cycle.
+      </p>
+    </div>
+
+    <div class="reflection-card">
+      <h4>🌅 Hope Amidst Darkness</h4>
+      <p>
+        Despite the heavy themes, there is a relentless thread of hope woven throughout Luke's story. His desire to use his experiences to help others — to bring brothers and sisters into his coalition — speaks to a powerful commitment to change and healing that no prison, no trauma, and no voice in the night could extinguish.
+      </p>
+    </div>
+
+    <div class="reflection-card">
+      <h4>💬 The Whispers Within</h4>
+      <p>
+        The imagery of whispers in his mind is evocative and deeply human. It symbolizes the inner turmoil and conflict he faced, as well as the long journey toward understanding and accepting his past. Over time, even the voices became — in his own words — "kind of like old friends."
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="rune-strip">✦ ONE BLOOD ✦ ONE PURPOSE ✦ MOVING FORWARD ✦</div>
+
+<!-- ═══════════════════════════ COALITION ═══ -->
+<section class="coalition-section">
+  <h2>The Coalition</h2>
+  <p class="coalition-text">
+    Luke Ferguson doesn't just carry his story for himself. He carries it for every brother and sister who has ever felt lost, locked up, cast aside, or forgotten. His coalition is built on a simple, radical idea: <strong>love is the answer</strong>. Not love as a soft, easy thing — but love as a warrior's commitment to lifting others up, regardless of color, background, or the sins of the past.
+  </p>
+
+  <div class="divider" style="max-width:400px; margin:0 auto 50px;">
+    <span class="divider-line"></span>
+    <span class="divider-symbol">✦</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <div class="coalition-poem">
+    <span class="line">Luke Ferguson is his name.</span>
+    <span class="line">Moving forward with love is his game.</span>
+    <span class="line">Everybody — it doesn't matter what color,</span>
+    <span class="line">regardless of the past — he is here.</span>
+    <span class="line">He wants to bring everybody together</span>
+    <span class="line">at last.</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CLOSING ═══ -->
+<section class="closing-section">
+  <h2>From Warpath to Waymaker</h2>
+
+  <p>
+    Luke Arrow Ferguson walked a road that would have broken most men. He was born into violence, raised in chaos, lost in systems designed to discard people like him. He earned a name in darkness — <em>Warpath</em> — a name that once stood for danger.
+  </p>
+
+  <p>
+    But names can be transformed. Like Saul who became Paul. Like a warrior who lays down his weapons not in defeat, but in the ultimate act of strength — choosing to build instead of destroy, to lift instead of crush, to love instead of hate.
+  </p>
+
+  <p>
+    That is who Luke Ferguson is today. And his story — every raw, painful, honest word of it — is his gift to you.
+  </p>
+
+  <div class="divider" style="max-width:400px; margin:40px auto;">
+    <span class="divider-line"></span>
+    <span class="divider-symbol">᛭</span>
+    <span class="divider-line"></span>
+  </div>
+
+  <p class="closing-name">Luke Arrow Ferguson</p>
+  <p style="font-family:'Raleway',sans-serif; color:var(--lakota-gold); letter-spacing:0.3em; font-size:0.85rem;">WARPATH · WARRIOR · WAYMAKER</p>
+
+  <br><br>
+
+  <p style="font-style:italic; color:var(--norse-silver); font-size:1rem; max-width:600px; margin:0 auto;">
+    "Whatever you're going through in life — you can make a difference in someone else's. You are not alone."
+  </p>
+</section>
+
+<!-- ═══════════════════════════ FOOTER ═══ -->
+<footer>
+  <p>WARPATH: The Story of Luke Arrow Ferguson &nbsp;·&nbsp; Lakota Sioux &amp; Scandinavian Heritage &nbsp;·&nbsp; Moving Forward with Love</p>
+  <br>
+  <p>This e-book is shared with love, for family, friends, and all who need to know they are not alone.</p>
+</footer>
+
+</body>
+</html>
